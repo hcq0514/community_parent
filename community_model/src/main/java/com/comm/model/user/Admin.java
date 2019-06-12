@@ -2,6 +2,7 @@ package com.comm.model.user;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +17,8 @@ import java.io.Serializable;
 public class Admin implements Serializable{
 
 	@Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GenericGenerator(name="idGenerator", strategy="uuid") //这个是hibernate的注解/生成32位UUID
+    @GeneratedValue(generator="idGenerator")
 	private String id;
 	@ApiModelProperty("登陆名称")
 	private String loginName;

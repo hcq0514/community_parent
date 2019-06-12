@@ -1,6 +1,8 @@
 package com.comm.model.user;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,20 +19,36 @@ import java.io.Serializable;
 public class User implements Serializable{
 
 	@Id
-	private String id;//ID
-	private String mobile;//手机号码
-	private String password;//密码
-	private String nickname;//昵称
-	private String sex;//性别
-	private java.util.Date birthday;//出生年月日
-	private String avatar;//头像
-	private String email;//E-Mail
-	private java.util.Date regdate;//注册日期
-	private java.util.Date updatedate;//修改日期
-	private java.util.Date lastdate;//最后登陆日期
-	private Long online;//在线时长（分钟）
-	private String interest;//兴趣
-	private String personality;//个性
-	private Integer fanscount;//粉丝数
-	private Integer followcount;//关注数
+	@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
+	private String id;
+	@ApiModelProperty("//手机号码")
+	private String mobile;
+	@ApiModelProperty("//密码")
+	private String password;
+    @ApiModelProperty("//昵称")
+    private String nickname;
+    @ApiModelProperty("//性别")
+    private String sex;
+    @ApiModelProperty("//出生年月日")
+    private java.util.Date birthday;
+    @ApiModelProperty("//头像")
+    private String avatar;
+    @ApiModelProperty("//E-Mail")
+    private String email;
+    @ApiModelProperty("///注册日期")
+    private java.util.Date regdate;
+    @ApiModelProperty("//修改日期")
+    private java.util.Date updatedate;
+    @ApiModelProperty("///最后登陆日期")
+    private java.util.Date lastdate;
+    @ApiModelProperty("//在线时长（分钟）")
+    private Long online;
+    @ApiModelProperty("//兴趣")
+    private String interest;
+    @ApiModelProperty("//个性")
+    private String personality;
+    @ApiModelProperty("//粉丝数")
+    private Integer fanscount;
+    @ApiModelProperty("//关注数")
+    private Integer followcount;
 }
