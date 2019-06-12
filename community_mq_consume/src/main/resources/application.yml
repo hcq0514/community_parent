@@ -1,0 +1,21 @@
+server:
+  port: 6010
+spring:
+  application:
+    name: mooc-mq-consume-service
+  data:
+    mongodb:
+      uri: mongodb://47.100.97.46:27017
+      database: mooc
+  rabbitmq:
+    host: 47.100.97.46
+    username: admin
+    password: admin
+    port: 5672
+    virtual-host: my_vhost
+  main:
+    allow-bean-definition-overriding: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6000/eureka/
