@@ -12,7 +12,6 @@
         <module>community_model</module>
         <module>community_api</module>
         <module>community_mq_consume</module>
-        <module>comm_user</module>
         <module>community_user</module>
     </modules>
     <parent>

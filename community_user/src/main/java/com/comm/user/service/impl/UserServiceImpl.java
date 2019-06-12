@@ -10,6 +10,7 @@ import com.comm.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
@@ -45,6 +46,7 @@ public class UserServiceImpl implements UserService {
         if (!optionUser.isPresent()) {
             ExceptionCast.cast(UserExceptionCode.USER_NOT_EXIST);
         }
+        user.setUpdateTime(LocalDateTime.now());
         User update = userDao.save(user);
         return new CommonResult<>(CommonCode.SUCCESS, update);
     }

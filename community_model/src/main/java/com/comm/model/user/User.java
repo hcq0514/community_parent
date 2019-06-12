@@ -5,9 +5,12 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * 实体类
  * @author Administrator
@@ -20,7 +23,7 @@ import java.io.Serializable;
 public class User implements Serializable{
 
 	@Id
-	@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
+    @GeneratedValue(generator="jpa-uuid")
 	private String id;
 	@ApiModelProperty("手机号码")
 	private String mobile;
@@ -31,17 +34,17 @@ public class User implements Serializable{
     @ApiModelProperty("性别")
     private String sex;
     @ApiModelProperty("出生年月日")
-    private java.util.Date birthday;
+    private LocalDateTime birthday;
     @ApiModelProperty("头像")
     private String avatar;
     @ApiModelProperty("E-Mail")
     private String email;
     @ApiModelProperty("注册日期")
-    private java.util.Date createTime;
+    private LocalDateTime createTime;
     @ApiModelProperty("修改日期")
-    private java.util.Date updateTime;
+    private LocalDateTime updateTime;
     @ApiModelProperty("最后登陆日期")
-    private java.util.Date lastLoginTime;
+    private LocalDateTime lastLoginTime;
     @ApiModelProperty("在线时长（分钟）")
     private Long onlineMinute;
     @ApiModelProperty("兴趣")
