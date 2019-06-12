@@ -14,11 +14,11 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name="comm_admin")
+@GenericGenerator(name="jpa-uuid", strategy="uuid")
 public class Admin implements Serializable{
 
 	@Id
-    @GenericGenerator(name="idGenerator", strategy="uuid") //这个是hibernate的注解/生成32位UUID
-    @GeneratedValue(generator="idGenerator")
+    @GeneratedValue(generator="jpa-uuid")
 	private String id;
 	@ApiModelProperty("登陆名称")
 	private String loginName;
