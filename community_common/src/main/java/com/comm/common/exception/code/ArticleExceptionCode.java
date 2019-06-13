@@ -15,7 +15,10 @@ public enum ArticleExceptionCode implements ResultCode {
     CHANNEL_ALREADY_EXIST(false, 4202, "渠道已存在！"),
     //专栏COLUMN异常从4111开始
     COLUMN_NOT_EXIST(false, 4211, "专栏不存在"),
-    COLUMN_ALREADY_EXIST(false, 4212, "专栏已存在！");
+    COLUMN_ALREADY_EXIST(false, 4212, "专栏已存在！"),
+    //文章ARTICLE异常从4111开始
+    ARTICLE_NOT_EXIST(false, 4221, "文章不存在"),
+    ARTICLE_ALREADY_EXIST(false, 4222, "文章已存在！");
     @ApiParam("是否成功")
     boolean success;
     @ApiParam("操作代码")
