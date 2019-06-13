@@ -3,6 +3,7 @@ package com.comm.article.service.impl;
 import com.comm.article.dao.ChannelDao;
 import com.comm.article.service.ChannelService;
 import com.comm.common.exception.ExceptionCast;
+import com.comm.common.exception.code.ArticleExceptionCode;
 import com.comm.common.exception.code.BaseExceptionCode;
 import com.comm.common.result.CommonCode;
 import com.comm.common.result.CommonResult;
@@ -46,7 +47,7 @@ public class ChannelServiceImpl implements ChannelService {
     public CommonResult update(Channel channel) {
         Optional<Channel> channelOptional = channelDao.findById(channel.getId());
         if (!channelOptional.isPresent()) {
-            ExceptionCast.cast(BaseExceptionCode.CITY_NOT_EXIST);
+            ExceptionCast.cast(ArticleExceptionCode.CHANNEL_NOT_EXIST);
         }
         Channel update = channelDao.save(channel);
         return new CommonResult<>(CommonCode.SUCCESS, update);
@@ -56,7 +57,7 @@ public class ChannelServiceImpl implements ChannelService {
     public CommonResult deleteById(String pageId) {
         Optional<Channel> channelOptional = channelDao.findById(pageId);
         if (!channelOptional.isPresent()) {
-            ExceptionCast.cast(BaseExceptionCode.CITY_ALREADY_EXIST);
+            ExceptionCast.cast(ArticleExceptionCode.CHANNEL_NOT_EXIST);
         }
         channelDao.deleteById(pageId);
         return new CommonResult<>(CommonCode.SUCCESS, null);

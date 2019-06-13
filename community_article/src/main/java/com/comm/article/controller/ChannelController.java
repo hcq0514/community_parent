@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("article")
+@RequestMapping("channel")
 public class ChannelController implements ChannelControllerApi {
 
     @Autowired

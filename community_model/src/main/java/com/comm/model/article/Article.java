@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * 实体类
  * @author Administrator
@@ -35,13 +37,13 @@ public class Article implements Serializable{
 	@ApiModelProperty("文章封面")
 	private String image;
 	@ApiModelProperty("发表日期")
-	private java.util.Date createTime;
+	private LocalDateTime createTime;
 	@ApiModelProperty("修改日期")
-	private java.util.Date updateTime;
+	private LocalDateTime updateTime;
 	@ApiModelProperty("是否公开")
-	private boolean open;
+	private Boolean open;
 	@ApiModelProperty("是否置顶")
-	private boolean top;
+	private Boolean top;
 	@ApiModelProperty("浏览量")
 	private Integer visitCount;
 	@ApiModelProperty("点赞数")
