@@ -14,6 +14,7 @@
         <module>community_mq_consume</module>
         <module>community_user</module>
         <module>community_base</module>
+        <module>community_article</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
