@@ -3,7 +3,7 @@ package com.comm.activity.service.impl;
 import com.comm.activity.dao.ActivityDao;
 import com.comm.activity.service.ActivityService;
 import com.comm.common.exception.ExceptionCast;
-import com.comm.common.exception.code.BaseExceptionCode;
+import com.comm.common.exception.code.ActivityExceptionCode;
 import com.comm.common.result.CommonCode;
 import com.comm.common.result.CommonResult;
 import com.comm.model.activity.Activity;
@@ -46,7 +46,7 @@ public class ActivityServiceImpl implements ActivityService {
     public CommonResult update(Activity activity) {
         Optional<Activity> activityOptional = activityDao.findById(activity.getId());
         if (!activityOptional.isPresent()) {
-            ExceptionCast.cast(BaseExceptionCode.CITY_NOT_EXIST);
+            ExceptionCast.cast(ActivityExceptionCode.ACTIVITY_NOT_EXIST);
         }
         Activity update = activityDao.save(activity);
         return new CommonResult<>(CommonCode.SUCCESS, update);
@@ -56,7 +56,7 @@ public class ActivityServiceImpl implements ActivityService {
     public CommonResult deleteById(String pageId) {
         Optional<Activity> activityOptional = activityDao.findById(pageId);
         if (!activityOptional.isPresent()) {
-            ExceptionCast.cast(BaseExceptionCode.CITY_ALREADY_EXIST);
+            ExceptionCast.cast(ActivityExceptionCode.ACTIVITY_NOT_EXIST);
         }
         activityDao.deleteById(pageId);
         return new CommonResult<>(CommonCode.SUCCESS, null);
