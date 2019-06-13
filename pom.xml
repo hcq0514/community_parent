@@ -15,6 +15,7 @@
         <module>community_user</module>
         <module>community_base</module>
         <module>community_article</module>
+        <module>community_activity</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
