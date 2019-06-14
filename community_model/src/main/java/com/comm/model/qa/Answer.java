@@ -2,11 +2,15 @@ package com.comm.model.qa;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * 实体类
  * @author Administrator
@@ -15,10 +19,12 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name="comm_answer")
+@GenericGenerator(name="jpa-uuid", strategy="uuid")
 public class Answer implements Serializable{
 
 	@ApiModelProperty("编号")
 	@Id
+    @GeneratedValue(generator="jpa-uuid")
 	private String id;
 	@ApiModelProperty("问题ID")
 	private String problemId;
@@ -30,7 +36,7 @@ public class Answer implements Serializable{
 	private String nickName;
 
 	@ApiModelProperty("创建日期")
-	private java.util.Date createTime;
+	private LocalDateTime createTime;
 	@ApiModelProperty("更新日期")
-	private java.util.Date updateTime;
+	private LocalDateTime updateTime;
 }
