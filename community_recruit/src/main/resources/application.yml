@@ -8,6 +8,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+#  开启sql显示
+#  jpa:
+#    show-sql: true
 eureka:
   client:
     service-url:

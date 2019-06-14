@@ -28,7 +28,7 @@ public class Recruit implements Serializable {
 	@ApiModelProperty("//薪资范围")
 	private String salary;
 	@ApiModelProperty("//经验要求")
-	private String condition;
+	private String workYears;
 	@ApiModelProperty("//学历要求")
 	private String education;
 	@ApiModelProperty("//任职方式")
@@ -41,6 +41,8 @@ public class Recruit implements Serializable {
 	private java.util.Date createTime;
 	@ApiModelProperty("//状态")
 	private Boolean state;
+	@ApiModelProperty("//是否推荐")
+	private Boolean recommend;
 	@ApiModelProperty("//网址")
 	private String url;
 	@ApiModelProperty("//标签")
