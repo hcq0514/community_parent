@@ -180,7 +180,7 @@ public class BatchMessage {
     /**
      * 获取发送成功数
      *
-     * @return success - 发送成功数
+     * @return status - 发送成功数
      */
     public Short getSuccess() {
         return success;
@@ -278,8 +278,8 @@ public class BatchMessage {
         sb.append(", content=").append(content);
         sb.append(", sendStatus=").append(sendStatus);
         sb.append(", bizId=").append(bizId);
-        sb.append(", failCode=").append(failCode);
-        sb.append(", success=").append(success);
+        sb.append(", response=").append(failCode);
+        sb.append(", status=").append(success);
         sb.append(", failure=").append(failure);
         sb.append(", appId=").append(appId);
         sb.append(", createDate=").append(createDate);

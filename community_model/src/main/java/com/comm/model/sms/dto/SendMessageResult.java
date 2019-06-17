@@ -5,18 +5,13 @@ import lombok.Data;
 @Data
 public class SendMessageResult {
 
-	private boolean success;
+	private boolean status;
 
-	private String failCode;
+	private String response;
 
-
-	public SendMessageResult(boolean status) {
-		this.success = status;
-	}
-
-	public SendMessageResult(boolean status,String failCode) {
-		this.success = status;
-		this.failCode = failCode;
+	public SendMessageResult(boolean status,String response) {
+		this.status = status;
+		this.response = response;
 	}
 
 }

@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 /**
@@ -24,11 +27,18 @@ public class MessageServiceTest {
     @Test
     public void send() {
         MessageDTO messageDTO = new MessageDTO();
+        messageDTO.setAppId(1);
+        messageDTO.setMobile("13113051027");
+        messageDTO.setTemplateId(1);
+        Map map = new HashMap();
+        map.put("code","1442");
+        map.put("phone","131130501027");
+        messageDTO.setParams(map);
         messageService.send(messageDTO);
     }
 
     @Test
-    public void sendSms() {
+    public void sendSms() throws InterruptedException {
         MessageDTO messageDTO = new MessageDTO();
         messageDTO.setAppId(1);
         messageDTO.setMobile("13113051027");

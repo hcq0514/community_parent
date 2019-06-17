@@ -15,8 +15,8 @@ public class App {
 
     @ApiModelProperty("应用id")
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Byte id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer id;
 
     @ApiModelProperty("应用名称")
     private String name;
@@ -24,14 +24,14 @@ public class App {
     @ApiModelProperty("签名私钥")
     private String privateKey;
 
-    @ApiModelProperty("短信前缀")
-    private String prefix;
+    @ApiModelProperty("短信签名")
+    private String signName;
 
     @ApiModelProperty("第三方渠道SDK配置参数")
     private String channelParams;
 
     @ApiModelProperty("创建时间")
-    private LocalDateTime createDate;
+    private LocalDateTime createTime;
 
     @ApiModelProperty("更新时间")
     private Date updateTime;

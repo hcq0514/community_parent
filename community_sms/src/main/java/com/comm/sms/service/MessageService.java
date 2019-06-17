@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.sound.midi.Soundbank;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.Map;
@@ -52,12 +51,11 @@ public class MessageService {
 
     public SendMessageResult send(MessageDTO messageDTO) {
         Integer templateId = messageDTO.getTemplateId();
-        String s = String.valueOf(templateId);
-        Optional<Template> templateOptional = templateMapper.findById(s);
+        Optional<Template> templateOptional = templateMapper.findById(templateId);
         if (!templateOptional.isPresent()) {
 //            throw new BaseException(BaseResultEnum.TEMPLATE_NOT_EXIST);
         }
-        Optional<App> appOptional = appMapper.findById(String.valueOf(messageDTO.getAppId()));
+        Optional<App> appOptional = appMapper.findById(messageDTO.getAppId());
         if (!appOptional.isPresent()) {
 //            throw new BaseException(BaseResultEnum.APP_NOT_EXIST);
         }
@@ -87,15 +85,15 @@ public class MessageService {
             message.setMobile(messageDTO.getMobile());
             message.setParams(new ObjectMapper().writeValueAsString(params));
             message.setTemplateId(templateOptional.get().getId());
-            if (result.isSuccess()) {
+            if (result.isStatus()) {
                 message.setSendStatus(SmsStatus.SENDING);
             } else {
                 message.setSendStatus(SmsStatus.FAILED);
-                message.setFailCode(result.getFailCode());
             }
             if (retry > 0) {
                 message.setRetry(retry);
             }
+            message.setResponse(result.getResponse());
             message.setChannel(channel);
             message.setCreateTime(LocalDateTime.now());
             message.setUpdateTime(LocalDateTime.now());
@@ -108,8 +106,8 @@ public class MessageService {
     }
 
 
-    public void sendSms(MessageDTO messageDTO) {
-        smsBlockingQueue.add(messageDTO);
+    public void sendSms(MessageDTO messageDTO) throws InterruptedException {
+        smsBlockingQueue.put(messageDTO);
     }
 
     @PostConstruct
@@ -117,7 +115,10 @@ public class MessageService {
         fixedThreadPool.submit(() -> {
             //监听短信队列
             while (true) {
-                send(smsBlockingQueue.take());
+                if (smsBlockingQueue.size() > 0) {
+                    System.out.println("队列添加一条数据");
+                    send(smsBlockingQueue.poll());
+                }
             }
         });
     }

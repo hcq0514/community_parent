@@ -13,11 +13,11 @@ public class Template {
 
     @ApiModelProperty("短信模板id")
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @ApiModelProperty("第三方模板Id")
-    private String channelTemplateNo;
+    private String channelTemplateId;
 
     @ApiModelProperty("模板名称")
     private String name;
@@ -35,6 +35,6 @@ public class Template {
     private LocalDateTime createTime;
 
     @ApiModelProperty("更新时间")
-    private LocalDateTime updateDate;
+    private LocalDateTime updateTime;
 
 }

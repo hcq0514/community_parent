@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Message {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @ApiModelProperty("手机号")
@@ -30,11 +30,12 @@ public class Message {
     @ApiModelProperty("发送状态（0：失败，1：接口调用成功，2：发送成功）")
     private Integer sendStatus;
 
-    @ApiModelProperty("短信平台发送失败代码")
-    private String failCode;
 
     @ApiModelProperty("短信发送渠道")
     private String channel;
+
+    @ApiModelProperty("返回内容")
+    private String response;
 
     @ApiModelProperty("重试次数")
     private Byte retry;

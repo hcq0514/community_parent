@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date : 2019/6/4
  */
 
-public interface AppDao extends JpaRepository<App, String> {
+public interface AppDao extends JpaRepository<App, Integer> {
 }
