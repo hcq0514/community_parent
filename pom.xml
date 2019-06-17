@@ -18,6 +18,7 @@
         <module>community_activity</module>
         <module>community_recruit</module>
         <module>community_qa</module>
+        <module>community_sms</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -44,6 +45,8 @@
         <common.io.version>2.6</common.io.version>
         <ognl.version>3.2.10</ognl.version>
         <mybatis.plus.boot.starter.version>3.1.0</mybatis.plus.boot.starter.version>
+        <aliyun.core.version>3.7.0</aliyun.core.version>
+        <aliyun.ecs.version>4.11.0</aliyun.ecs.version>
 
     </properties>
 
@@ -109,12 +112,12 @@
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-core</artifactId>
-                <version>3.7.0</version>
+                <version>${aliyun.core.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-ecs</artifactId>
-                <version>4.11.0</version>
+                <version>${aliyun.ecs.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
