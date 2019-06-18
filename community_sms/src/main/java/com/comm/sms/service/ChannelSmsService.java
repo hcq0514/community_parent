@@ -2,10 +2,8 @@ package com.comm.sms.service;
 
 
 import com.comm.model.sms.App;
-import com.comm.model.sms.Message;
 import com.comm.model.sms.Template;
 import com.comm.model.sms.dto.MessageDTO;
-import com.comm.model.sms.dto.QuerySendResult;
 import com.comm.model.sms.dto.SendMessageResult;
 
 public interface ChannelSmsService {

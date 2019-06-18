@@ -49,7 +49,7 @@ public class MessageService {
     private static ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3);
 
 
-    public SendMessageResult send(MessageDTO messageDTO) {
+    SendMessageResult send(MessageDTO messageDTO) {
         Integer templateId = messageDTO.getTemplateId();
         Optional<Template> templateOptional = templateMapper.findById(templateId);
         if (!templateOptional.isPresent()) {
@@ -60,7 +60,9 @@ public class MessageService {
 //            throw new BaseException(BaseResultEnum.APP_NOT_EXIST);
         }
         Map<String, Object> params = messageDTO.getParams();
-        logger.info("开始发送短信:{}", templateOptional.get());
+        Template template = templateOptional.get();
+        App app = appOptional.get();
+        logger.info("开始发送短信:{}", template);
         Iterator<ChannelSmsService> iterator = channelSMSServices.iterator();
         SendMessageResult result;
         byte retry = 0;
@@ -69,7 +71,7 @@ public class MessageService {
             ChannelSmsService channelSMSService = iterator.next();
             channel = channelSMSService.getChannel();
             try {
-                result = channelSMSService.send(appOptional.get(), templateOptional.get(), messageDTO);
+                result = channelSMSService.send(app, template, messageDTO);
                 break;
             } catch (Exception e) {
                 logger.error("渠道短信发送异常", e);
@@ -84,9 +86,9 @@ public class MessageService {
             Message message = new Message();
             message.setMobile(messageDTO.getMobile());
             message.setParams(new ObjectMapper().writeValueAsString(params));
-            message.setTemplateId(templateOptional.get().getId());
+            message.setTemplateId(template.getId());
             if (result.isStatus()) {
-                message.setSendStatus(SmsStatus.SENDING);
+                message.setSendStatus(SmsStatus.SUCCESS);
             } else {
                 message.setSendStatus(SmsStatus.FAILED);
             }
@@ -98,7 +100,7 @@ public class MessageService {
             message.setCreateTime(LocalDateTime.now());
             message.setUpdateTime(LocalDateTime.now());
             Message save = messageMapper.save(message);
-            logger.info("{}插入结果:{},生成的自增id为:{}", message, message.getId());
+            logger.info("插入Message数据成功,message:[{}]", save);
         } catch (Exception e) {
             logger.error("插入Message数据异常" + messageDTO, e);
         }
@@ -107,6 +109,7 @@ public class MessageService {
 
 
     public void sendSms(MessageDTO messageDTO) throws InterruptedException {
+        logger.info("写入消息进阻塞队列，message:[{}]", messageDTO);
         smsBlockingQueue.put(messageDTO);
     }
 
@@ -115,9 +118,14 @@ public class MessageService {
         fixedThreadPool.submit(() -> {
             //监听短信队列
             while (true) {
-                if (smsBlockingQueue.size() > 0) {
-                    System.out.println("队列添加一条数据");
-                    send(smsBlockingQueue.poll());
+                try {
+                    if (smsBlockingQueue.size() > 0) {
+                        MessageDTO messageDTO = smsBlockingQueue.poll();
+                        logger.info("开始处理队列消息，message:[{}]", messageDTO);
+                        send(messageDTO);
+                    }
+                } catch (Exception e) {
+                    logger.info("队列消费失败，exception:[{}]", e.getMessage());
                 }
             }
         });

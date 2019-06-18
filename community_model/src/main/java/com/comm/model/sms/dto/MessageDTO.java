@@ -17,10 +17,10 @@ public class MessageDTO {
 	/**
 	 * 模板id
 	 */
-	private Integer templateId;
+	private String templateId;
 
     @ApiParam("应用id")
-    private Integer appId;
+    private String appId;
 
     @ApiParam("是否为验证码")
     private Boolean captcha;

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -38,13 +39,9 @@ public class AliSmsServiceImpl implements ChannelSmsService {
     @Value("${sms.aliyun.accessKeySecret}")
     private String accessKeySecret;
 
+    @Autowired
     private IAcsClient client;
 
-    @PostConstruct
-    public void initConfig() {
-        DefaultProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, accessKeySecret);
-        client = new DefaultAcsClient(profile);
-    }
 
     @Override
     public SendMessageResult send(App app, Template template, MessageDTO message) {

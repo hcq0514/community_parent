@@ -21,6 +21,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:6000/eureka/
-swagger:
-  base-package:
-    com.comm.*
