@@ -8,6 +8,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+  redis:
+    host: 47.100.97.46
+    port: 6379
 sms:
   aliyun:
     accessKeyId: LTAIPylXSyjSzvHF # 你自己的accessKeyId

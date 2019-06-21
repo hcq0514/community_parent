@@ -1,7 +1,7 @@
 package com.comm.sms.constant;
 
 
-public class Channels {
+public class SmsChannels {
 
 	public static final String ALI_SMS = "aliyun";
 

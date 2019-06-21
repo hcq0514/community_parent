@@ -2,29 +2,29 @@ package com.comm.sms.service;
 
 
 import com.comm.model.sms.App;
+import com.comm.model.sms.Sms;
 import com.comm.model.sms.Template;
-import com.comm.model.sms.dto.MessageDTO;
-import com.comm.model.sms.dto.SendMessageResult;
+import com.comm.model.sms.dto.SendSmsResult;
 
 public interface ChannelSmsService {
 
 	/**
-	 * 调用具体的短信平台发送短信
-	 * @param app
-	 * @param template
-	 * @param message
+	 * 使用模版来发送短信调用具体的短信平台发送短信
+	 * @param app 应用
+	 * @param template 消息
+	 * @param sms
 	 * @return
 	 */
-	SendMessageResult send(App app, Template template, MessageDTO message) ;
+	SendSmsResult sendByTemplate(App app, Template template, Sms sms) ;
 
 	/**
-	 * 调用具体的短信平台批量发送短信
-	 * @param app
-	 * @param mobile
-	 * @param content
+	 * 使用模版来发送短信调用具体的短信平台发送短信
+	 * @param app 应用
+	 * @param sms 消息
 	 * @return
 	 */
-	SendMessageResult batchSend(App app, String[] mobile, String content) ;
+	SendSmsResult sendByContent(App app, Sms sms) ;
+
 
 	/**
 	 * 获取短信渠道名称

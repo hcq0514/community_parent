@@ -1,6 +1,6 @@
 package com.comm.sms.dao;
 
-import com.comm.model.sms.Message;
+import com.comm.model.sms.Sms;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date : 2019/6/4
  */
 
-public interface MessageDao extends JpaRepository<Message, String> {
+public interface SmsDao extends JpaRepository<Sms, String> {
 }

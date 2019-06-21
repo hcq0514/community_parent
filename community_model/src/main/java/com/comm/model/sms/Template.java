@@ -2,6 +2,7 @@ package com.comm.model.sms;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "t_template")
+@Accessors(chain = true)
 public class Template {
 
     @ApiModelProperty("短信模板id")

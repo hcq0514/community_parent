@@ -2,6 +2,7 @@ package com.comm.model.sms;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "t_app")
+@Accessors(chain = true)
 public class App {
 
     @ApiModelProperty("应用id")
