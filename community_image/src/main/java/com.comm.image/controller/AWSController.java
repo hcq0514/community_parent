@@ -1,7 +1,6 @@
 package com.comm.image.controller;
 
-import com.aliyun.oss.OSSClient;
-import com.comm.image.service.AwsS3Wrapper;
+import com.comm.image.service.impl.AwsS3FileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class AWSController {
 
     @Autowired
-    AwsS3Wrapper awsS3Wrapper;
+    AwsS3FileServiceImpl awsS3Wrapper;
 
     @GetMapping("token")
     @ResponseBody

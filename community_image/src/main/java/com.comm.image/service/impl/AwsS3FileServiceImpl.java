@@ -1,4 +1,4 @@
-package com.comm.image.service;
+package com.comm.image.service.impl;
 
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -7,6 +7,7 @@ import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.services.securitytoken.model.Credentials;
 import com.amazonaws.services.securitytoken.model.GetSessionTokenRequest;
 import com.amazonaws.services.securitytoken.model.GetSessionTokenResult;
+import com.comm.image.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.io.OutputStream;
 import java.util.Date;
 
 @Component
-public class AwsS3Wrapper implements FileWrapper {
+public class AwsS3FileServiceImpl implements FileService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private AmazonS3Client amazonS3Client;
